@@ -1,16 +1,13 @@
 ## 1. Product Position Statement (PPS)
 
-| Element | Details |
+| Element | Statement |
 | :--- | :--- |
-| **Product Name** | `medication-reminder` |
-| **Target Audience** | Older adults and patients with chronic conditions on recurring medication, as well as nearby or remote family caregivers |
-| **Problem Statement** | Medication doses are easily missed, and it is difficult to flexibly update actual intake times or let family members check whether doses were taken from afar. |
-| **Category** | Medication adherence and caregiver-sharing web/mobile application |
-| **Key Benefits** | • One-click dose check-in with actual intake time (`actual_taken_at`) and notes<br>• Automatic missed-dose detection and highlighting past scheduled times<br>• Read-only adherence sharing and missed-dose alerts via consent-based family links (`care_link`) |
-| **Unique Selling Proposition (USP)** | Built on a relational data model that separates schedule rules (`medication_schedule`) from actual dose logs (`dose_log`) along with audit logs (`audit_log`), allowing the web MVP and future mobile app to reuse the same service layer. |
-| **Competitive Landscape** | Existing simple reminder and tracker apps are often device-local and limited in family sharing, adjusting actual intake times, and tracking record history. |
-| **Core Values** | Clarity, data integrity, access control, and traceability |
-| **Brand Promise** | Keep daily medication logging simple for patients while helping caregivers check adherence status clearly and safely. |
+| **Target Customer** | Older adults and chronic-condition patients taking recurring daily medications, along with their family caregivers |
+| **Need** | Frequently miss scheduled doses, struggle to record late intake times accurately, and lack a safe way for remote family members to verify daily adherence |
+| **Product & Category** | `medication-reminder` is a shared medication adherence web and mobile application |
+| **Key Benefit** | Provides one-click dose check-in with editable actual intake times, automatic missed-dose highlighting, and consent-based read-only family visibility |
+| **Competitive Alternative** | Device-local pill reminder apps that restrict free medication counts, lock intake timestamps, and isolate adherence history on a single device |
+| **Primary Differentiation** | Separates schedule rules (`medication_schedule`) from actual dose logs (`dose_log`) in a cloud relational database with consent-based sharing (`care_link`) and audit trails (`audit_log`), enabling flexible late-dose logging and traceable caregiver access across web and future mobile clients |
 
 **Positioning Statement:**
 > For patients managing recurring medications and their family caregivers, `medication-reminder` is a medication adherence and shared tracking application that simplifies dose logging, highlights missed doses, and supports read-only family visibility because it separates schedules from actual dose logs, enforces role-based access with audit tracking, and reuses a shared service layer across web and future mobile clients.
