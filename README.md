@@ -26,28 +26,7 @@ Patients on recurring daily medications often miss doses or take them late, whil
 
 ## Architecture
 
-```mermaid
-flowchart TB
-    subgraph APP["Mobile App (React Native / Expo)"]
-        UI["Screens & UI<br/>Login · Meds & Schedule<br/>Check-In & History · Caregiver View"]
-        STATE["App State & Sync Layer<br/>Auth Session · Firestore SDK / onSnapshot<br/>Schedule / Cancel API"]
-        UI <--> STATE
-    end
-
-    NOTI["Local Notifications<br/>expo-notifications<br/>Daily alarm · Offline · Cancel / Reschedule"]
-
-    subgraph FB["Firebase"]
-        AUTH["Firebase Auth"]
-        DB[("Cloud Firestore")]
-        RULES["Firestore Security Rules<br/>Owner write / read<br/>Consent-based family read"]
-        AUTH --> RULES
-        DB --> RULES
-    end
-
-    UI -- "OS Local Alarm API" --> NOTI
-    STATE -- "Auth & Data" --> AUTH
-    STATE -- "Consent & Role" --> DB
-```
+<img src="docs/images/architecture.png" alt="Architecture" width="400" />
 
 ## Getting Started
 
