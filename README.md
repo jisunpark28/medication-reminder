@@ -26,7 +26,7 @@ Patients on recurring daily medications often miss doses or take them late, whil
 
 ## Architecture
 
-<img src="docs/images/architecture.png" alt="Architecture" width="400" />
+<img src="docs/images/architecture.png" alt="Architecture" width="600" />
 
 ## Getting Started
 
