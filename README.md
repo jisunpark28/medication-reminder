@@ -44,7 +44,7 @@ Patients on daily medications often miss or delay doses, while remote family car
 
 ## Architecture
 
-<img src="docs/images/architecture.png" alt="Architecture" width="600" />
+<img src="docs/images/architecture_v1.1.png" alt="Architecture" width="600" />
 
 ## Documentation
 
