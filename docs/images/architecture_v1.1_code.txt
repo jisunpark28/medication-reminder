@@ -1,0 +1,48 @@
+%%{init: {'flowchart': {'nodeSpacing': 90, 'rankSpacing': 100, 'padding': 24, 'wrappingWidth': 650, 'htmlLabels': true}}}%%
+flowchart TB
+    %% Mobile App Layer
+    subgraph App ["Mobile App (React Native / Expo · StyleSheet · JS · Android)"]
+        UI["<div style='white-space:nowrap'><b>Screens & UI</b><br/>Meds & Schedule · One-Tap Check-In · History<br/>(v1.1 Optional: Login · Caregiver View)</div>"]
+        State["<div style='white-space:nowrap'><b>App State & Data Layer</b><br/>Local-First Repository · Local Alarm Scheduler<br/>(v1.1 Optional: Auth Session · Cloud Sync)</div>"]
+
+        UI -- "Actions" --> State
+        State -- "State Updates" --> UI
+    end
+
+    %% On-Device Local Layer (v1.0 MVP)
+    subgraph Local ["On-Device Local Layer (v1.0 MVP — Offline-First)"]
+        SQLite[("<div style='white-space:nowrap'><b>Local DB · Expo SQLite</b><br/>Meds, Schedules, Dose Logs<br/>UUID + updatedAt</div>")]
+        Notif["<div style='white-space:nowrap'><b>Local Notifications · expo-notifications</b><br/>Android Daily Alarm · Offline · Reschedule</div>"]
+    end
+
+    %% Optional Cloud Layer (v1.1)
+    subgraph Cloud ["Optional Cloud Layer (v1.1 — Firebase)"]
+        Auth["<div style='white-space:nowrap'><b>Firebase Auth</b><br/>Optional Sign-In</div>"]
+        Firestore[("<div style='white-space:nowrap'><b>Cloud Firestore</b><br/>Real-Time Sync & Backup</div>")]
+        Functions["<div style='white-space:nowrap'><b>Cloud Functions</b><br/>Invite · Link/Revoke · Delete</div>"]
+        Rules["<div style='white-space:nowrap'><b>Firestore Security Rules</b><br/>Owner R/W · Consent-Based Caregiver Read</div>"]
+
+        Auth --> Rules
+        Firestore --> Rules
+        Functions --> Firestore
+    end
+
+    %% Connections (v1.0 Solid / v1.1 Dashed)
+    State <-->|"Offline CRUD"| SQLite
+    State -->|"OS Local Alarm API"| Notif
+    State -.->|"Optional Sign-In"| Auth
+    State <-.->|"Sync / onSnapshot"| Firestore
+    State -.->|"Callable API"| Functions
+
+    %% Styling
+    style App fill:#f5f3ff,stroke:#c4b5fd,stroke-width:1.5px
+    style Local fill:#f0f9ff,stroke:#7dd3fc,stroke-width:1.5px
+    style Cloud fill:#f0fdf4,stroke:#86efac,stroke-width:1.5px,stroke-dasharray: 6 4
+    style UI fill:#ffffff,stroke:#334155
+    style State fill:#ffffff,stroke:#334155
+    style SQLite fill:#ffffff,stroke:#334155
+    style Notif fill:#ffffff,stroke:#334155
+    style Auth fill:#ffffff,stroke:#334155
+    style Firestore fill:#ffffff,stroke:#334155
+    style Functions fill:#ffffff,stroke:#334155
+    style Rules fill:#ffffff,stroke:#334155
