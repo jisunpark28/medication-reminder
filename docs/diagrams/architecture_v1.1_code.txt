@@ -2,28 +2,28 @@
 flowchart TB
     %% Mobile App Layer
     subgraph App ["Mobile App (React Native / Expo · StyleSheet · JS · Android)"]
-        UI["<div style='white-space:nowrap'><b>Screens & UI</b><br/>Meds & Schedule · One-Tap Check-In · History<br/>(v1.1 Optional: Login · Caregiver View)</div>"]
-        State["<div style='white-space:nowrap'><b>App State & Data Layer</b><br/>Local-First Repository · Local Alarm Scheduler<br/>(v1.1 Optional: Auth Session · Cloud Sync)</div>"]
+        UI["<div style='white-space:nowrap'><b>Screens & UI</b><br/>Today · Medications · History · Settings<br/>(v1.1 Optional: Login · Caregiver View)</div>"]
+        State["<div style='white-space:nowrap'><b>App State & Data Layer</b><br/>Local-First Repository · Dose Reconciler · Alarm Scheduler<br/>(v1.1 Optional: Auth Session · Cloud Sync)</div>"]
 
         UI -- "Actions" --> State
         State -- "State Updates" --> UI
     end
 
     %% On-Device Local Layer (v1.0 MVP)
-    subgraph Local ["On-Device Local Layer (v1.0 MVP — Offline-First)"]
-        SQLite[("<div style='white-space:nowrap'><b>Local DB · Expo SQLite</b><br/>Meds, Schedules, Dose Logs<br/>UUID + updatedAt</div>")]
-        Notif["<div style='white-space:nowrap'><b>Local Notifications · expo-notifications</b><br/>Android Daily Alarm · Offline · Reschedule</div>"]
+    subgraph Local ["On-Device Local Layer (v1.0 MVP - Offline-First)"]
+        SQLite[("<div style='white-space:nowrap'><b>Local DB · Expo SQLite</b><br/>Meds, Schedules, Dose Logs, Settings<br/>UUID + updated_at</div>")]
+        Notif["<div style='white-space:nowrap'><b>Local Notifications · expo-notifications</b><br/>Grouped Daily Alarms · Offline · Resync</div>"]
     end
 
     %% Optional Cloud Layer (v1.1)
-    subgraph Cloud ["Optional Cloud Layer (v1.1 — Firebase)"]
+    subgraph Cloud ["Optional Cloud Layer (v1.1 - Firebase)"]
         Auth["<div style='white-space:nowrap'><b>Firebase Auth</b><br/>Optional Sign-In</div>"]
         Firestore[("<div style='white-space:nowrap'><b>Cloud Firestore</b><br/>Real-Time Sync & Backup</div>")]
         Functions["<div style='white-space:nowrap'><b>Cloud Functions</b><br/>Invite · Link/Revoke · Delete</div>"]
         Rules["<div style='white-space:nowrap'><b>Firestore Security Rules</b><br/>Owner R/W · Consent-Based Caregiver Read</div>"]
 
         Auth --> Rules
-        Firestore --> Rules
+        Rules --> Firestore
         Functions --> Firestore
     end
 
